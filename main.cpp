@@ -17,6 +17,7 @@ std::vector<double> solution(const double h, const uint64_t N)
 std::vector<double> pFunc(const double h, const uint64_t N)
 {
 	std::vector<double> p(N);
+	(void)h;
 
 	for (size_t i = 0; i <= N - 1; ++i)
 		p[i] = 2.0;
@@ -45,6 +46,9 @@ double error(const std::vector<double>& u, const std::vector<double>& v, const d
 
 int main(int argc, char* argv[])
 {
+	if (argc != 3)
+		return -1;
+
 	size_t N = std::stoull(argv[1]);
 	double h = 1.0 / (static_cast<double>(N) - 0.5);
 
