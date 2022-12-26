@@ -1,0 +1,15 @@
+BasedOnStyle: WebKit
+UseTab: ForIndentation
+TabWidth: 4
+IndentWidth: 4
+# AlignConsecutiveMacros: AcrossEmptyLines
+
+# AlignConsecutiveMacros:
+#   Enabled: true
+#   AcrossEmptyLines: false
+#   AcrossComments: false
+# ColumnLimit: 120
+# BinPackArguments: false
+# BinPackParameters: false
+# ExperimentalAutoDetectBinPacking: false
+# AllowAllParametersOfDeclarationOnNextLine: false
