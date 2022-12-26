@@ -14,21 +14,21 @@ std::vector<double> solution(const double h, const uint64_t N)
 	return res;
 }
 
-std::vector<double> constPFunc(const double h, const uint64_t N)
+std::vector<double> pFunc(const double h, const uint64_t N)
 {
 	std::vector<double> p(N);
 
 	for (size_t i = 0; i <= N - 1; ++i)
-		p[i] = 1.0;
+		p[i] = 2.0;
 
 	return p;
 }
 
-std::vector<double> func(std::vector<double>& p, const double h, const uint64_t N)
+std::vector<double> func(const std::vector<double>& p, const std::vector<double>& y, const double h, const uint64_t N)
 {
 	std::vector<double> f(N);
 	for (size_t i = 0; i <= N - 1; ++i) {
-		f[i] = std::cos(M_PI * i * h) * (M_PI * M_PI + p[i]);
+		f[i] = M_PI * M_PI * std::cos(M_PI * i * h) + p[i] * y[i];
 	}
 	return f;
 }
@@ -48,10 +48,10 @@ int main(int argc, char* argv[])
 	size_t N = std::stoull(argv[1]);
 	double h = 1.0 / (static_cast<double>(N) - 0.5);
 
-	auto p = constPFunc(h, N);
-	auto f = func(p, h, N);
-	auto res = solve(p, f, h, N);
 	auto groundTruth = solution(h, N);
+	auto p = pFunc(h, N);
+	auto f = func(p, groundTruth, h, N);
+	auto res = solve(p, f, h, N);
 
 	std::ofstream fout;
 	fout.open(argv[2]);
