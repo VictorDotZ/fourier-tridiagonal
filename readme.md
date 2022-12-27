@@ -3,12 +3,10 @@ plot "f_out.txt" using 1:2 w lp title "fourie", "f_out.txt" using 1:3 w lp title
 ```
 
 ```bash
-./tridiagonal.out 10 t_out.txt >> t_err.txt
-./tridiagonal.out 100 t_out.txt >> t_err.txt
-./tridiagonal.out 1000 t_out.txt >> t_err.txt
-./tridiagonal.out 10000 t_out.txt >> t_err.txt
+chmod +x calc_errors.sh
+./calc_errors.sh
 ```
 
 ```bash
-plot "t_err.txt" u (log10($1)):(log10(1/$2)) pointtype 5 notitle, 2*x with lines title "y=2x"
+plot "f_err.txt" u (log10($1)):(log10(1/$2)) pointtype 1 title "fourie", "t_err.txt" u (log10($1)):(log10(1/$2)) pointtype 66 title "tridiagonal",  2*x with lines title "y=2x"
 ```
