@@ -9,8 +9,11 @@
 std::vector<double> solution(const double h, const uint64_t N)
 {
 	std::vector<double> res(N);
-	for (size_t i = 0; i <= N - 1; ++i)
-		res[i] = std::cos(M_PI * (i * h));
+	for (size_t i = 0; i <= N - 1; ++i) {
+		auto x = i * h;
+		// res[i] = x * x * (1 - x) * (1 - x) * std::exp(x);
+		res[i] = (3.0 - 3.0 * x + x * x) * std::exp(x);
+	}
 	return res;
 }
 
@@ -20,7 +23,7 @@ std::vector<double> pFunc(const double h, const uint64_t N)
 	(void)h;
 
 	for (size_t i = 0; i <= N - 1; ++i)
-		p[i] = 2.0;
+		p[i] = 1.0;
 
 	return p;
 }
@@ -29,7 +32,9 @@ std::vector<double> func(const std::vector<double>& p, const std::vector<double>
 {
 	std::vector<double> f(N);
 	for (size_t i = 0; i <= N - 1; ++i) {
-		f[i] = M_PI * M_PI * std::cos(M_PI * i * h) + p[i] * y[i];
+		auto x = i * h;
+		// f[i] = -(std::exp(x) * (x * x * x * x + 6 * x * x * x + x * x - 8 * x + 2)) + p[i] * y[i];
+		f[i] = -(std::exp(x) * (x * x + x - 1)) + p[i] * y[i];
 	}
 	return f;
 }

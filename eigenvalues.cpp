@@ -15,8 +15,7 @@ double eigenFunctionComponent(const double C, const uint64_t n, const uint64_t k
 	return C * std::cos(2.0 * M_PI * static_cast<double>(n) * static_cast<double>(k) / (2.0 * static_cast<double>(N) - 1.0));
 }
 
-std::vector<double>
-eigenFunction(const double C, const uint64_t n, const uint64_t N)
+std::vector<double> eigenFunction(const double C, const uint64_t n, const uint64_t N)
 {
 	std::vector<double> y_n(N);
 

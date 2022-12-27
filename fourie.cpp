@@ -15,7 +15,8 @@ std::vector<double> solve(const std::vector<double>& p, const std::vector<double
 	std::vector<double> y(N);
 
 	for (size_t n = 0; n <= N - 1; ++n) {
-		auto eigenVector = eigenFunction(C, n, N);
+		auto eigenVector = (n == 0) ? eigenFunction(1.0, n, N) : eigenFunction(C, n, N);
+
 		d_n = dotProduct(f, eigenVector, h);
 		auto lambda = extendedEigenValue(p, n, h, N);
 
